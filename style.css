@@ -1,18 +1,39 @@
+
+@font-face {
+    font-family: 'Flexo-Regular';
+    src: url('./fonts/Flexo-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    background-color: rgb(90, 30, 30);
-    font-family: roboto;
+    
+    font-family: "Flexo-Regular";
+    background-color: rgb(120, 22, 22);
+}
+
+.all-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding-bottom: 20px;
+    background-color: rgb(120, 22, 22);
+    
 }
 
 main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: rgb(90, 30, 30);
+    padding-top: 20px;
 }
 
 input {
@@ -20,14 +41,12 @@ input {
 }
 
 
-h1 {
-    font-family: roboto;
-    color: white;
-}
+
 .btn-container{
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    background-color: rgb(120, 22, 22);
 }
 
 .btn-container button {
@@ -46,4 +65,10 @@ h1 {
 .btn-container button:hover {
     background-color: #ffdb4d;
     transform: scale(1.05);
+}
+
+@media (max-width: 460px){
+    .poke-logo{
+        width: 140px;
+    }
 }

@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
     <script src="./script/template.js"></script>
     <script src="./script.js"></script>
-    
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/pokecards.css">
 
     <title>Pokedex</title>
 </head>
+
 <body onload="init()">
-    <header>
-        <h1>Pokedex</h1>
-        <input type="text" placeholder="search for name">
-    </header>
-    <main id="content"></main>
-    <div class="btn-container">
-    <button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>
+    <div class="all-content">
+        <header>
+            <img class="poke-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="">
+            <input type="text" placeholder="search for name">
+        </header>
+        <main id="content"></main>
+        <div class="btn-container">
+            <button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>
+        </div>
     </div>
 
 </body>
+
 </html>
