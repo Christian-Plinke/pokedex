@@ -1,6 +1,6 @@
 function getPokemonCardTemplate(pokemon) {
     return `
-<div class="pokeCard type-${pokemon.types[0]}">
+<div onclick="showDetails(id)" id="poke-${pokemon.id}" class="pokeCard type-${pokemon.types[0]}">
 <div class="card-h2">
 <h2><span>#${pokemon.id}</span> <span>${pokemon.name}</span></h2>
 </div>
