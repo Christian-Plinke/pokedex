@@ -1,11 +1,16 @@
+
+
 .pokeCard {
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(255, 253, 253, 0.4);
     padding: 16px;
     margin: 12px;
     width: 200px;
     color: white;
-    display: inline-block;
+    height: 280px; /* oder eine Höhe deiner Wahl */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation vorbereiten */
 }
@@ -14,6 +19,36 @@
     transform: translateY(-5px) scale(1.01); /* Karte hebt sich leicht an und vergrößert sich */
     box-shadow: 0 8px 20px rgba(0,0,0,0.2);   /* Schatten wird intensiver */
     cursor: pointer;
+}
+
+.pokeCard p {
+    font-size: 20px;
+}
+
+.pokeCard h2 {
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card-h2{
+    background-color: #3a1515;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.pokeCard img {
+    max-width: 100px;
+    max-height: 100px;
+    filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.4));
+}
+
+.types {
+display: flex;
+justify-content: space-around;
+
+
 }
 
 .type-fire {
@@ -32,4 +67,27 @@
     background-color: #A8A77A;
 }
 
+.type-bug {
+    background-color: #A6B91A;
+}
+
+.type-flying {
+    background-color: #A98FF3;
+}
+
+.type-poison {
+    background-color: #A33EA1;
+}
+
+.type-fairy {
+    background-color: #D685AD;
+}
+
+.type-ground {
+    background-color: #E2BF65;
+}
+
+.type-electric {
+    background-color: #F7D02C;
+}
 /* ...weitere Typfarben */

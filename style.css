@@ -1,1 +1,49 @@
+body {
+    background-color: rgb(90, 30, 30);
+    font-family: roboto;
+}
 
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+input {
+    height: fit-content;
+}
+
+
+h1 {
+    font-family: roboto;
+    color: white;
+}
+.btn-container{
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
+
+.btn-container button {
+    background-color: #ffcb05;      /* Pokémon-Gelb */
+    color: #2a75bb;                 /* Kontrastfarbe */
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-container button:hover {
+    background-color: #ffdb4d;
+    transform: scale(1.05);
+}
