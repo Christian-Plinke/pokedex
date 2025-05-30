@@ -18,19 +18,24 @@ async function fetchAllPokemons(currentOffset) {
         await fetchPokemonInfos(pokemon.url);
     }
     renderAllPokemons();
+    
     showLoadButton();
 }
 
 async function fetchPokemonInfos(url) {
     const response = await fetch(url);
     const pokemonInfos = await response.json();
-    const types = pokemonInfos.types.map(entry => entry.type.name);
+    const types = pokemonInfos.types.map(element => element.type.name);
     const image = pokemonInfos.sprites.other.dream_world.front_default;
+    const height = pokemonInfos.height;
+    const weight = pokemonInfos.weight;
     const pokemon = {
         id: pokemonInfos.id,
         name: pokemonInfos.name,
         image: image,
-        types: types
+        types: types,
+        height: height,
+        weight: weight
     };
     pokemonList.push(pokemon);
 }
@@ -41,6 +46,14 @@ function renderAllPokemons() {
     pokemonList.forEach(pokemon => {
         html.innerHTML += getPokemonCardTemplate(pokemon);
     });
+}
+
+function renderPokemonOverlay() {
+    const html = document.getElementById('poke-details');
+    html.innerHTML = "";
+    
+        html.innerHTML += getPokemonOverlayTemplate(pokemon);
+
 }
 
 async function loadMorePokemons() {
@@ -90,8 +103,11 @@ function showLoadButton() {
 function showDetails(id) {
     currentPokeId = id;
     console.log(id);
-    const pokemon = pokemonList.find(p => p.id === id);
-    console.log(pokemon);
+    const numericId = Number(id.toString().replace("poke-", ""));
+    const pokemon = pokemonList.find(p => p.id === numericId);
+    console.log(pokemon.image);
+    document.getElementById('overlay').innerHTML = getPokemonOverlayTemplate(pokemon);
+    document.getElementById('overlay').classList.remove("d_none");
 }
 
 

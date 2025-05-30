@@ -1,0 +1,34 @@
+.overlay-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(255, 253, 253, 0.4);
+    padding: 16px;
+    margin: 12px;
+    width: 600px;
+    color: white;
+    height: 500px;
+    /* oder eine Höhe deiner Wahl */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 10000;
+    /* Animation vorbereiten */
+}
+
+.overlay-card h2 {
+    text-transform: capitalize;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.overlay-card img {
+    max-width: 200px;
+    max-height: 200px;
+    filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.4));
+}
+
+.poke-details {
+    display: flex;
+}
