@@ -6,6 +6,7 @@ let currentPokeId = null;
 
 function init() {
     currentPokemon = pokemonList;
+    showLoadingSpinner();
     fetchAllPokemons();
 }
 
@@ -17,6 +18,7 @@ async function fetchAllPokemons(currentOffset) {
         await fetchPokemonInfos(pokemon.url);
     }
     renderAllPokemons();
+    showLoadButton();
 }
 
 async function fetchPokemonInfos(url) {
@@ -31,13 +33,6 @@ async function fetchPokemonInfos(url) {
         types: types
     };
     pokemonList.push(pokemon);
-    
-}
-
-async function loadMorePokemons() {
-    currentOffset += 20;
-    showLoadingSpinner();
-    await fetchAllPokemons(currentOffset);
 }
 
 function renderAllPokemons() {
@@ -47,6 +42,13 @@ function renderAllPokemons() {
         html.innerHTML += getPokemonCardTemplate(pokemon);
     });
 }
+
+async function loadMorePokemons() {
+    currentOffset += 20;
+    showLoadingSpinner();
+    await fetchAllPokemons(currentOffset);
+}
+
 function searchName() {
     const input = document.getElementById('search-input').value.toLowerCase();
     if (input.length < 3) {
@@ -67,13 +69,21 @@ function searchName() {
 }
 
 
-    function showLoadingSpinner() {
+function showLoadingSpinner() {
     const html = document.getElementById('content');
+    const buttonHtml = document.getElementById('btn-container');
+
+    buttonHtml.innerHTML = ``;
+
     html.innerHTML = `
         <div class="spinner-container">
             <div class="spinner"></div>
         </div>
     `;
+}
+
+function showLoadButton() {
+    document.getElementById('btn-container').innerHTML = `<button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>`;
 }
 
 
