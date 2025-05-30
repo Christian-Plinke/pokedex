@@ -32,3 +32,8 @@
 .poke-details {
     display: flex;
 }
+
+.close-btn {
+    position: absolute;
+    top: 0;
+}

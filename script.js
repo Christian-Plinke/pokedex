@@ -56,6 +56,10 @@ function renderPokemonOverlay() {
 
 }
 
+function closeOverlay() {
+    document.getElementById('overlay').classList.add("d_none");
+}
+
 async function loadMorePokemons() {
     currentOffset += 20;
     showLoadingSpinner();

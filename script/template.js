@@ -17,6 +17,7 @@ function getPokemonCardTemplate(pokemon) {
 
 function getPokemonOverlayTemplate(pokemon) {
     return `
+     <button class="close_btn" onclick="closeOverlay()">close</button>
     <div id="poke-details" class=" overlay-card type-${pokemon.types[0]}">
         <h2><span>#${pokemon.id}</span> <span>${pokemon.name}</span></h2>
         <div class="pokeImage">
