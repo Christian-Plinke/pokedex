@@ -8,6 +8,7 @@ function init() {
     currentPokemon = pokemonList;
     showLoadingSpinner();
     fetchAllPokemons();
+    fetchDescription();
 }
 
 async function fetchAllPokemons(currentOffset) {
@@ -40,6 +41,13 @@ async function fetchPokemonInfos(url) {
     pokemonList.push(pokemon);
 }
 
+async function fetchDescription() {
+    const response = await fetch(BASE_URL + `pokemon-species/${currentPokeId}`)
+    const data = await response.json();
+    const text = data.flavor_text_entries.flavor_text;
+    console.log(text);
+}
+
 function renderAllPokemons() {
     const html = document.getElementById('content');
     html.innerHTML = "";
@@ -58,6 +66,7 @@ function renderPokemonOverlay() {
 
 function closeOverlay() {
     document.getElementById('overlay').classList.add("d_none");
+    document.body.classList.remove("disable-scroll");
 }
 
 async function loadMorePokemons() {
@@ -85,7 +94,6 @@ function searchName() {
     });
 }
 
-
 function showLoadingSpinner() {
     const html = document.getElementById('content');
     const buttonHtml = document.getElementById('btn-container');
@@ -103,7 +111,6 @@ function showLoadButton() {
     document.getElementById('btn-container').innerHTML = `<button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>`;
 }
 
-
 function showDetails(id) {
     currentPokeId = id;
     console.log(id);
@@ -112,6 +119,7 @@ function showDetails(id) {
     console.log(pokemon.image);
     document.getElementById('overlay').innerHTML = getPokemonOverlayTemplate(pokemon);
     document.getElementById('overlay').classList.remove("d_none");
+    document.body.classList.add("disable-scroll");
 }
 
 

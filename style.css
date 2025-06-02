@@ -59,7 +59,9 @@ input {
     height: fit-content;
 }
 
-
+.disable-scroll {
+    overflow: hidden;
+}
 
 .btn-container{
     display: flex;
