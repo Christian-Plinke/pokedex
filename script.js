@@ -1,12 +1,10 @@
 const BASE_URL = "https://pokeapi.co/api/v2/"
 
 let pokemonList = [];
-let currentPokemon = [];
 let currentOffset = 0;
 let currentPokeId = null;
 
 function init() {
-    currentPokemon = pokemonList;
     showLoadingSpinner();
     fetchAllPokemons();
 }
@@ -25,11 +23,17 @@ async function fetchAllPokemons(currentOffset) {
 async function fetchPokemonInfos(url) {
     const response = await fetch(url);
     const pokemonInfos = await response.json();
-    const types = pokemonInfos.types.map(e => e.type.name);
+    const description = await getPokemonDescription(pokemonInfos.species.url);
+    const pokemon = buildPokemonObject(pokemonInfos, description);
+    pokemonList.push(pokemon);
+}
+
+function buildPokemonObject(pokemonInfos, description) {
+    const types = pokemonInfos.types.map(element => element.type.name);
     const image = pokemonInfos.sprites.other.dream_world.front_default;
     const height = pokemonInfos.height;
     const weight = pokemonInfos.weight;
-    const description = await getPokemonDescription(pokemonInfos.id);
+    const stats = getPokemonStats(pokemonInfos);
     const pokemon = {
         id: pokemonInfos.id,
         name: pokemonInfos.name,
@@ -37,23 +41,32 @@ async function fetchPokemonInfos(url) {
         types: types,
         height: height,
         weight: weight,
-        description: description
+        description: description,   
+        stats: stats
     };
-    pokemonList.push(pokemon);
+    return pokemon;
 }
 
-async function getPokemonDescription(id) {
-    let description = "Keine Beschreibung gefunden.";
+async function getPokemonDescription(speciesUrl) {
+    let description = "no description found.";
     try {
-        const speciesResponse = await fetch(BASE_URL + `pokemon-species/${id}`);
+        const speciesResponse = await fetch(speciesUrl);
         const speciesData = await speciesResponse.json();
         const entry = speciesData.flavor_text_entries.find(e => e.language.name === "en")
-            || speciesData.flavor_text_entries[0];
-        description = entry.flavor_text.replace(/\n|\f/g, ' ');
+        description = entry.flavor_text//.replace(/\n|\f/g, ' ');
     } catch (err) {
         console.error("Fehler beim Laden der Description für ID", id, err);
     }
     return description;
+}
+
+function getPokemonStats(pokemonInfos) {
+    const stats = {};
+    pokemonInfos.stats.forEach(statObj => {
+        const name = statObj.stat.name;
+        stats[name] = statObj.base_stat;
+    });
+    return stats;
 }
 
 function renderAllPokemons() {
@@ -66,8 +79,7 @@ function renderAllPokemons() {
 
 function showOverlay(id) {
     currentPokeId = id;
-    const numericId = Number(id.replace("poke-", ""));
-    const pokemon = pokemonList.find(p => p.id === numericId);
+    const pokemon = pokemonList.find(p => p.id === id);
     document.getElementById('overlay').innerHTML = getPokemonOverlayTemplate(pokemon);
     document.getElementById('overlay').classList.remove("d_none");
     document.body.classList.add("disable-scroll");
@@ -121,13 +133,11 @@ function showLoadButton() {
 }
 
 function nextPokemon() {
-    const numericId = Number(currentPokeId.toString().replace("poke-", ""));
-    const nextId = numericId + 1;
-    showOverlay("poke-" + nextId);
+    const nextId = currentPokeId + 1;
+    showOverlay(nextId);
 }
 
 function previousPokemon() {
-    const numericId = Number(currentPokeId.toString().replace("poke-", ""));
-    const previousId = numericId - 1;
-    showOverlay("poke-" + previousId);
+    const previousId = currentPokeId - 1;
+    showOverlay(previousId);
 }

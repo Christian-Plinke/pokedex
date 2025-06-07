@@ -1,6 +1,6 @@
 function getPokemonCardTemplate(pokemon) {
     return `
-<div onclick="showOverlay(id)" id="poke-${pokemon.id}" class="pokeCard type-${pokemon.types[0]}">
+<div onclick="showOverlay(${pokemon.id})" id="poke-${pokemon.id}" class="pokeCard type-${pokemon.types[0]}">
 <div class="card-h2">
 <h2><span>#${pokemon.id}</span> <span>${pokemon.name}</span></h2>
 </div>
@@ -28,7 +28,9 @@ function getPokemonOverlayTemplate(pokemon) {
         <div class="detail-infos">
         <h3>height: ${pokemon.height} </h3>
         <h3>weight: ${pokemon.weight}</h3>
-        <p id="poke-description">${pokemon.description}</p>    
+        
+        <p id="poke-description">${pokemon.description}</p>   
+        <p id="poke-stats">hp: ${pokemon.stats.hp}</p>
         </div>
     </div>
     `
