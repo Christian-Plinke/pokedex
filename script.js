@@ -44,7 +44,7 @@ function buildPokemonObject(pokemonInfos, description) {
         description: description,   
         stats: stats
     };
-    return pokemon;
+    return pokemon; 
 }
 
 async function getPokemonDescription(speciesUrl) {
@@ -81,12 +81,12 @@ function showOverlay(id) {
     currentPokeId = id;
     const pokemon = pokemonList.find(p => p.id === id);
     document.getElementById('overlay').innerHTML = getPokemonOverlayTemplate(pokemon);
-    document.getElementById('overlay').classList.remove("d_none");
+    document.getElementById('overlay-container').classList.remove("d_none");
     document.body.classList.add("disable-scroll");
 }
 
 function closeOverlay() {
-    document.getElementById('overlay').classList.add("d_none");
+    document.getElementById('overlay-container').classList.add("d_none");
     document.body.classList.remove("disable-scroll");
 }
 

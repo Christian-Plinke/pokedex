@@ -17,14 +17,13 @@ function getPokemonCardTemplate(pokemon) {
 
 function getPokemonOverlayTemplate(pokemon) {
     return `
-     <button class="close_btn" onclick="closeOverlay()">close</button>
-    <div id="poke-details" class="overlay-card type-${pokemon.types[0]}">
+    
+    <div onclick="closeOverlay()" id="poke-details" class="overlay-card type-${pokemon.types[0]}">
         <h2><span>#${pokemon.id}</span> <span>${pokemon.name}</span></h2>
         <div class="pokeImage">
             <img src="${pokemon.image}" alt="Bild von ${pokemon.name}">
         </div>
-        <button onclick="nextPokemon()">next</button>
-        <button onclick="previousPokemon()">back</button>
+        
         <div class="detail-infos">
         <h3>height: ${pokemon.height} </h3>
         <h3>weight: ${pokemon.weight}</h3>
@@ -32,6 +31,10 @@ function getPokemonOverlayTemplate(pokemon) {
         <p id="poke-description">${pokemon.description}</p>   
         <p id="poke-stats">hp: ${pokemon.stats.hp}</p>
         </div>
+    </div>
+    <div class="btn">
+    <button onclick="nextPokemon()">next</button>
+    <button onclick="previousPokemon()">back</button>
     </div>
     `
 }   

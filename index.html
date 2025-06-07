@@ -18,17 +18,20 @@
 
 <body onload="init()" class="">
     <div class="all-content">
-        <div id="overlay" class="overlay d_none">
-          
+        <div id="overlay-container" class="overlay-container d_none">
+            <div id="overlay" class="overlay">
+            </div>
         </div>
         <header>
-            <img class="poke-logo" src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="">
+            <img class="poke-logo"
+                src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pokémon_logo.svg" alt="">
             <input id="search-input" type="text" onkeyup="searchName()" placeholder="search for name">
         </header>
         <main id="content"></main>
         <div id="btn-container" class="btn-container">
             <button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>
         </div>
+
     </div>
 
 </body>

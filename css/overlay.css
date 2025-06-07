@@ -1,3 +1,9 @@
+.overlay{
+    display: flex;
+    flex-direction: column;
+}
+
+
 .overlay-card {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(255, 253, 253, 0.4);
@@ -31,9 +37,4 @@
 
 .poke-details {
     display: flex;
-}
-
-.close-btn {
-    position: absolute;
-    top: 0;
 }
