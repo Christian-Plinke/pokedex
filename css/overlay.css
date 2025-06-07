@@ -21,9 +21,10 @@
     box-shadow: 0 4px 10px rgba(255, 253, 253, 0.4);
     padding: 16px;
     margin: 12px;
-    width: 600px;
+    width: auto;
+    max-width: 600px;
     color: white;
-    height: 500px;
+    height: auto;
     /* oder eine Höhe deiner Wahl */
     display: flex;
     flex-direction: column;
@@ -47,9 +48,12 @@
     filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.4));
 }
 
-.poke-details {
+.detail-infos{
     display: flex;
+    justify-content: center;
+    gap: 20px;
 }
+
 
 .next-btn {
     background-color: #ffcb05;

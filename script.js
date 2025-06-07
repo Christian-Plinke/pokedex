@@ -133,11 +133,20 @@ function showLoadButton() {
 }
 
 function nextPokemon() {
-    const nextId = currentPokeId + 1;
-    showOverlay(nextId);
+    const maxId = Math.max(...pokemonList.map(p => p.id));
+    if (currentPokeId === maxId){
+        showOverlay(currentId = 1);
+    }
+    else{
+    showOverlay(currentPokeId + 1);
+    }
 }
 
 function previousPokemon() {
-    const previousId = currentPokeId - 1;
-    showOverlay(previousId);
+        if (currentPokeId === 1) {
+        const maxId = Math.max(...pokemonList.map(p => p.id));
+        showOverlay(maxId);
+    } else {
+        showOverlay(currentPokeId - 1);
+    }
 }
