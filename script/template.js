@@ -17,16 +17,17 @@ function getPokemonCardTemplate(pokemon) {
 
 function getPokemonOverlayTemplate(pokemon) {
     return `
-    
-    <div onclick="closeOverlay()" id="poke-details" class="overlay-card type-${pokemon.types[0]}">
+    <div id="poke-details" class="overlay-card type-${pokemon.types[0]}">
         <div class="overlay-header">
         <h2><span>#${pokemon.id}</span> <span>${pokemon.name}</span></h2>
         </div>
         <div class="description-container">
         <p id="poke-description">${pokemon.description}</p>   
         </div>
-        <div class="pokeImage">
-            <img src="${pokemon.image}" alt="Bild von ${pokemon.name}">
+        <div class="poke-image">
+            <button class="next-btn" onclick="previousPokemon()">back</button>
+            <img class="img-detail" src="${pokemon.image}" alt="Bild von ${pokemon.name}">
+            <button class="next-btn" onclick="nextPokemon()">next</button>
         </div>
         <div class="detail-infos">
         <h3>height: ${pokemon.height} </h3>
@@ -37,15 +38,10 @@ function getPokemonOverlayTemplate(pokemon) {
         <p>hp: ${pokemon.stats.hp}</p>
         <p>attack: ${pokemon.stats.attack}</p>
         <p>defense: ${pokemon.stats.defense}</p>
-        <p>speed: ${pokemon.stats.defense}</p>
-
-        
+        <p>speed: ${pokemon.stats.speed}</p>
+        <p>special-attack: ${pokemon.stats["special-attack"]}</p>
+        <p>special-defense: ${pokemon.stats["special-defense"]}</p>
         </div>
-        
-    </div>
-    <div class="btn">
-    <button class="next-btn" onclick="previousPokemon()">back</button>
-    <button class="next-btn" onclick="nextPokemon()">next</button>
     </div>
     `
 }   

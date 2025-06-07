@@ -3,8 +3,8 @@
     flex-direction: column;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    width: 90%;
-    height: 90vh;
+    width: 100%;
+    height: 100vh;
     margin: auto; /* zentriert das Overlay */
     background-color: rgba(0, 0, 0, 0.543);
     z-index: 9999;
@@ -55,6 +55,12 @@
     gap: 20px;
 }
 
+.poke-image{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 
 .next-btn {
     background-color: #ffcb05;
@@ -73,4 +79,16 @@
 .next-btn:hover {
     background-color: #ffdb4d;
     transform: scale(1.05);
+}
+
+@media (max-width: 430px){
+    .overlay-card img {
+    max-width: 100px;
+    max-height: 100px;
+    filter: drop-shadow(3px 5px 2px rgba(0, 0, 0, 0.4));
+}
+    .next-btn{
+        font-size: 16px;
+        padding: 8px 12px;
+    }
 }

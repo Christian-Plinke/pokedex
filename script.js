@@ -90,6 +90,19 @@ function closeOverlay() {
     document.body.classList.remove("disable-scroll");
 }
 
+// Schließe Overlay beim Klick auf den Backdrop außerhalb der Karte
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('overlay');
+    if (overlay) {
+        overlay.addEventListener('click', function(e) {
+            // nur schließen, wenn direkt auf das Overlay (Backdrop) geklickt wurde
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+    }
+});
+
 async function loadMorePokemons() {
     currentOffset += 20;
     showLoadingSpinner();
@@ -141,6 +154,8 @@ function nextPokemon() {
     showOverlay(currentPokeId + 1);
     }
 }
+
+
 
 function previousPokemon() {
         if (currentPokeId === 1) {
