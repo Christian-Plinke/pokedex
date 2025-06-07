@@ -9,6 +9,13 @@ function init() {
     fetchAllPokemons();
 }
 
+function showLoadingSpinner() {
+    const html = document.getElementById('content');
+    const buttonHtml = document.getElementById('btn-container');
+    buttonHtml.innerHTML = ``;
+    html.innerHTML = getLoadingSpinnerTemplate();
+}
+
 async function fetchAllPokemons(currentOffset) {
     const response = await fetch(BASE_URL + `pokemon?limit=20&offset=${currentOffset}`);
     const pokemonListData = await response.json();
@@ -90,18 +97,7 @@ function closeOverlay() {
     document.body.classList.remove("disable-scroll");
 }
 
-// Schließe Overlay beim Klick auf den Backdrop außerhalb der Karte
-document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.getElementById('overlay');
-    if (overlay) {
-        overlay.addEventListener('click', function(e) {
-            // nur schließen, wenn direkt auf das Overlay (Backdrop) geklickt wurde
-            if (e.target === overlay) {
-                closeOverlay();
-            }
-        });
-    }
-});
+
 
 async function loadMorePokemons() {
     currentOffset += 20;
@@ -128,18 +124,7 @@ function searchName() {
     });
 }
 
-function showLoadingSpinner() {
-    const html = document.getElementById('content');
-    const buttonHtml = document.getElementById('btn-container');
 
-    buttonHtml.innerHTML = ``;
-
-    html.innerHTML = `
-        <div class="spinner-container">
-            <div class="spinner"></div>
-        </div>
-    `;
-}
 
 function showLoadButton() {
     document.getElementById('btn-container').innerHTML = `<button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>`;
@@ -165,3 +150,15 @@ function previousPokemon() {
         showOverlay(currentPokeId - 1);
     }
 }
+
+// Schließe Overlay beim Klick außerhalb der Karte
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('overlay');
+    if (overlay) {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                closeOverlay();
+            }
+        });
+    }
+});
