@@ -33,8 +33,8 @@ function getPokemonOverlayTemplate(pokemon) {
         </div>
     </div>
     <div class="btn">
-    <button onclick="nextPokemon()">next</button>
-    <button onclick="previousPokemon()">back</button>
+    <button class="next-btn" onclick="previousPokemon()">back</button>
+    <button class="next-btn" onclick="nextPokemon()">next</button>
     </div>
     `
 }   

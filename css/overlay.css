@@ -1,8 +1,20 @@
-.overlay{
+
+.overlay {
     display: flex;
     flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 90%;
+    height: 90vh;
+    margin: auto; /* zentriert das Overlay */
+    background-color: rgba(0, 0, 0, 0.543);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px; /* Optional, macht die Ecken weicher */
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35); /* Optional, gibt einen schönen Schatten */
 }
-
 
 .overlay-card {
     border-radius: 12px;
@@ -37,4 +49,23 @@
 
 .poke-details {
     display: flex;
+}
+
+.next-btn {
+    background-color: #ffcb05;
+    color: #2a75bb;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 8px;
+}
+
+.next-btn:hover {
+    background-color: #ffdb4d;
+    transform: scale(1.05);
 }
