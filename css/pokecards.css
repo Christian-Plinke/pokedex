@@ -6,20 +6,16 @@
     width: 200px;
     color: white;
     height: 280px;
-    /* oder eine Höhe deiner Wahl */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* Animation vorbereiten */
 }
 
 .pokeCard:hover {
     transform: translateY(-5px) scale(1.01);
-    /* Karte hebt sich leicht an und vergrößert sich */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    /* Schatten wird intensiver */
     cursor: pointer;
 }
 
@@ -113,4 +109,3 @@
 .type-ghost {
     background-color: #735797;
 }
-/* ...weitere Typfarben */

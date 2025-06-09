@@ -48,7 +48,7 @@ function getPokemonOverlayTemplate(pokemon) {
     `
 }   
 
-function getLoadingSpinnerTemplate(){
+function getLoadingSpinnerTemplate() {
     return `
         <div class="spinner-container">
             <div class="spinner"></div>

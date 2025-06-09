@@ -12,8 +12,6 @@ body {
     background-color: rgb(120, 22, 22);
 }
 
-
-
 .d_none{
     display: none;
 }
@@ -58,8 +56,8 @@ input {
 }
 
 .btn-container button {
-    background-color: #ffcb05;      /* Pokémon-Gelb */
-    color: #2a75bb;                 /* Kontrastfarbe */
+    background-color: #ffcb05;     
+    color: #2a75bb;                 
     border: none;
     padding: 12px 24px;
     border-radius: 8px;

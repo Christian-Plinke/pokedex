@@ -31,11 +31,11 @@ async function fetchPokemonInfos(url) {
     const response = await fetch(url);
     const pokemonInfos = await response.json();
     const description = await getPokemonDescription(pokemonInfos.species.url);
-    const pokemon = buildPokemonObject(pokemonInfos, description); //warum hier description?!
+    const pokemon = buildPokemonObject(pokemonInfos, description);
     pokemonList.push(pokemon);
 }
 
-function buildPokemonObject(pokemonInfos, description) { //warum hier description?
+function buildPokemonObject(pokemonInfos, description) {
     const types = pokemonInfos.types.map(element => element.type.name);
     const image = pokemonInfos.sprites.other.dream_world.front_default;
     const height = pokemonInfos.height;
@@ -48,7 +48,7 @@ function buildPokemonObject(pokemonInfos, description) { //warum hier descriptio
         types: types,
         height: height,
         weight: weight,
-        description: description,   //warum hier description?
+        description: description,
         stats: stats
     };
     return pokemon; 
@@ -69,14 +69,12 @@ async function getPokemonDescription(speciesUrl) {
         const speciesResponse = await fetch(speciesUrl);
         const speciesData = await speciesResponse.json();
         const entry = speciesData.flavor_text_entries.find(e => e.language.name === "en")
-        description = entry.flavor_text//.replace(/\n|\f/g, ' ');
+        description = entry.flavor_text.replace(/\n|\f/g, ' ');
     } catch (err) {
         console.error("Fehler beim Laden der Description für ID", id, err);
     }
     return description;
 }
-
-
 
 function renderAllPokemons() {
     const html = document.getElementById('content');
@@ -98,8 +96,6 @@ function closeOverlay() {
     document.getElementById('overlay-container').classList.add("d_none");
     document.body.classList.remove("disable-scroll");
 }
-
-
 
 async function loadMorePokemons() {
     currentOffset += 20;
@@ -126,8 +122,6 @@ function searchName() {
     });
 }
 
-
-
 function showLoadButton() {
     document.getElementById('btn-container').innerHTML = `<button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>`;
 }
@@ -142,8 +136,6 @@ function nextPokemon() {
     }
 }
 
-
-
 function previousPokemon() {
         if (currentPokeId === 1) {
         const maxId = Math.max(...pokemonList.map(p => p.id));
@@ -153,7 +145,6 @@ function previousPokemon() {
     }
 }
 
-// Schließe Overlay beim Klick außerhalb der Karte
 document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('overlay');
     if (overlay) {
