@@ -18,6 +18,7 @@ function getPokemonCardTemplate(pokemon) {
 function getPokemonOverlayTemplate(pokemon) {
     return `
     <div id="poke-details" class="overlay-card type-${pokemon.types[0]}">
+    <button class="close-btn">X</button>
         <div class="overlay-header">
         <h2><span>#${pokemon.id}</span> <span>${pokemon.name}</span></h2>
         </div>
@@ -41,6 +42,7 @@ function getPokemonOverlayTemplate(pokemon) {
         <p>speed: ${pokemon.stats.speed}</p>
         <p>special-attack: ${pokemon.stats["special-attack"]}</p>
         <p>special-defense: ${pokemon.stats["special-defense"]}</p>
+        
         </div>
     </div>
     `

@@ -31,11 +31,11 @@ async function fetchPokemonInfos(url) {
     const response = await fetch(url);
     const pokemonInfos = await response.json();
     const description = await getPokemonDescription(pokemonInfos.species.url);
-    const pokemon = buildPokemonObject(pokemonInfos, description);
+    const pokemon = buildPokemonObject(pokemonInfos, description); //warum hier description?!
     pokemonList.push(pokemon);
 }
 
-function buildPokemonObject(pokemonInfos, description) {
+function buildPokemonObject(pokemonInfos, description) { //warum hier description?
     const types = pokemonInfos.types.map(element => element.type.name);
     const image = pokemonInfos.sprites.other.dream_world.front_default;
     const height = pokemonInfos.height;
@@ -48,10 +48,19 @@ function buildPokemonObject(pokemonInfos, description) {
         types: types,
         height: height,
         weight: weight,
-        description: description,   
+        description: description,   //warum hier description?
         stats: stats
     };
     return pokemon; 
+}
+
+function getPokemonStats(pokemonInfos) {
+    const stats = {};
+    pokemonInfos.stats.forEach(statObj => {
+        const name = statObj.stat.name;
+        stats[name] = statObj.base_stat;
+    });
+    return stats;
 }
 
 async function getPokemonDescription(speciesUrl) {
@@ -67,14 +76,7 @@ async function getPokemonDescription(speciesUrl) {
     return description;
 }
 
-function getPokemonStats(pokemonInfos) {
-    const stats = {};
-    pokemonInfos.stats.forEach(statObj => {
-        const name = statObj.stat.name;
-        stats[name] = statObj.base_stat;
-    });
-    return stats;
-}
+
 
 function renderAllPokemons() {
     const html = document.getElementById('content');

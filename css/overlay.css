@@ -34,6 +34,7 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 10000;
     /* Animation vorbereiten */
+    position: relative;
 }
 
 .overlay-card h2 {
@@ -80,6 +81,31 @@
     background-color: #ffdb4d;
     transform: scale(1.05);
 }
+
+
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-color: #ffcb05;
+    color: #2a75bb;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+    z-index: 10001;
+}
+
+.close-btn:hover {
+    background-color: #ffdb4d;
+    transform: scale(1.1);
+}
+
+
 
 @media (max-width: 430px){
     .overlay-card img {
