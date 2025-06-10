@@ -55,3 +55,9 @@ function getLoadingSpinnerTemplate() {
         </div>
     `; 
 }
+
+function getLoadButtonTemplate() {
+    return `
+    <button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>
+    `
+}

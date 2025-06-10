@@ -19,8 +19,7 @@ function showLoadingSpinner() {
 async function fetchAllPokemons(currentOffset) {
     const response = await fetch(BASE_URL + `pokemon?limit=20&offset=${currentOffset}`);
     const pokemonListData = await response.json();
-    for (let i = 0; i < pokemonListData.results.length; i++) {
-        const pokemon = pokemonListData.results[i];
+    for (const pokemon of pokemonListData.results) {
         await fetchPokemonInfos(pokemon.url);
     }
     renderAllPokemons();
@@ -123,7 +122,7 @@ function searchName() {
 }
 
 function showLoadButton() {
-    document.getElementById('btn-container').innerHTML = `<button class="load-pokes" onclick="loadMorePokemons()">load more pokemons</button>`;
+    document.getElementById('btn-container').innerHTML = getLoadButtonTemplate();
 }
 
 function nextPokemon() {
