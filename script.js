@@ -6,7 +6,7 @@ let currentPokeId = null;
 
 function init() {
     showLoadingSpinner();
-    fetchAllPokemons();
+    fetchAllPokemons(currentOffset);
 }
 
 function showLoadingSpinner() {
@@ -17,21 +17,31 @@ function showLoadingSpinner() {
 }
 
 async function fetchAllPokemons(currentOffset) {
-    const response = await fetch(BASE_URL + `pokemon?limit=20&offset=${currentOffset}`);
-    const pokemonListData = await response.json();
-    for (const pokemon of pokemonListData.results) {
-        await fetchPokemonInfos(pokemon.url);
+    try {
+        const response = await fetch(BASE_URL + `pokemon?limit=20&offset=${currentOffset}`);
+        const pokemonListData = await response.json();
+        for (const pokemon of pokemonListData.results) {
+            await fetchPokemonInfos(pokemon.url);
+        }
+        renderAllPokemons();
+        showLoadButton();
+    } catch (error) {
+        console.error("failed to load pokemon list:", error);
+        document.getElementById('error').innerHTML = "failed to load pokemon list!";
     }
-    renderAllPokemons();
-    showLoadButton();
 }
 
 async function fetchPokemonInfos(url) {
-    const response = await fetch(url);
-    const pokemonInfos = await response.json();
-    const description = await getPokemonDescription(pokemonInfos.species.url);
-    const pokemon = buildPokemonObject(pokemonInfos, description);
-    pokemonList.push(pokemon);
+    try {
+        const response = await fetch(url);
+        const pokemonInfos = await response.json();
+        const description = await getPokemonDescription(pokemonInfos.species.url);
+        const pokemon = buildPokemonObject(pokemonInfos, description);
+        pokemonList.push(pokemon);
+    } catch (error) {
+        console.error("failed to load pokemon details", error);
+        document.getElementById('error').innerHTML = "failed to load pokemon details";
+    }
 }
 
 function buildPokemonObject(pokemonInfos, description) {
@@ -50,7 +60,7 @@ function buildPokemonObject(pokemonInfos, description) {
         description: description,
         stats: stats
     };
-    return pokemon; 
+    return pokemon;
 }
 
 function getPokemonStats(pokemonInfos) {
@@ -127,16 +137,16 @@ function showLoadButton() {
 
 function nextPokemon() {
     const maxId = Math.max(...pokemonList.map(p => p.id));
-    if (currentPokeId === maxId){
-        showOverlay(currentId = 1);
+    if (currentPokeId === maxId) {
+        showOverlay(1);
     }
-    else{
-    showOverlay(currentPokeId + 1);
+    else {
+        showOverlay(currentPokeId + 1);
     }
 }
 
 function previousPokemon() {
-        if (currentPokeId === 1) {
+    if (currentPokeId === 1) {
         const maxId = Math.max(...pokemonList.map(p => p.id));
         showOverlay(maxId);
     } else {
@@ -144,13 +154,19 @@ function previousPokemon() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const overlay = document.getElementById('overlay');
     if (overlay) {
-        overlay.addEventListener('click', function(e) {
-            if (e.target === overlay) {
+        overlay.addEventListener('click', function (event) {
+            if (event.target === overlay) {
                 closeOverlay();
             }
         });
+    }
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === "Escape") {
+        closeOverlay();
     }
 });
